@@ -5,19 +5,19 @@
 
 // $(...) will run the function you give it when the page is loaded & ready
 $(function() {
-  // console.log will log a message or object to the browser developer console
-  console.log("page loaded...");
+    console.log("page loaded...");
 
-  $("#amazing-button").click( function() {
-    document.getElementById('results-area').innerHTML = "SOMETHING";
-  });
-  /*
-   * TODO: You will need to use a css selector to get jQuery to find the button element in the page
-   * Then you will need to make a new javascript function to do stuff for when the button
-   * is clicked and pass it into the click function above...
-   */
+    $("#amazing-button").click(displayAChuckNorrisJoke);
 });
 
+function displayAChuckNorrisJoke() {
+  $("#results-area").text('loading...');
+
+  fetchRandomChuckNorrisJoke(function(word) {
+    $("#results-area").text("Your random Chuck Norris joke is: \"" + word + "\"");
+  });
+
+}
 // Gets a random chuck norris joke from an API, then passes it to the callback function
 function fetchRandomChuckNorrisJoke(callback) {
   // this api picks a random chuck norris joke and returns it as plain text
